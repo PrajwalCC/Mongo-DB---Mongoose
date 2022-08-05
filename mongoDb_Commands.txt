@@ -1,0 +1,93 @@
+--db.mydata.insertOne({name:"Prajwal"})
+=>this will insert one object in mydata datadase.
+
+--db.mydata.insertMany({name:"xyz", surname:"abc"})
+=>Insert more than 1 object.
+
+--db.mydata.find({name:"Prajwal"}, {name:1 , age:1} )
+=> this give me the objects contain name as Prajwal, And In that object it will show me only id(default parameter), name and age Property only(becoz name & age is given 1).
+
+--db.mydata.find({name:"Prajwal"}, {name:1 , age:1, id: 0} )
+=> same as above only id will not present becoz we have given id as 0.
+
+--db.mydata.find({name:"Prajwal"}, {age:0})
+=>show all Properties of Prajwal except age.
+
+--db.mydata.find({name: { $eq: "Prajwal"}}) here eq = equal
+=>show object which contain name = Prajwal
+
+--db.mydata.find({name: { $ne: "Prajwal"}}) here ne= not equal
+=> show all objects in datadase except object name=Prajwal
+
+--db.mydata.find({age: { $gt: 19}})
+=> show all objects which contain age greater than 19.
+
+--db.mydata.find({age: { $gte: 19}})
+=> show all objects which contain age greater than equal to 19.
+
+--db.mydata.find({age: { $lt: 19}})
+=> show all objects which contain age less than 19.
+
+--db.mydata.find({name: { $in: ['Prajwal', 'xyz']}})
+=> show all objects which contain name Prajwal and xyz.
+
+--db.mydata.find({name: { $nin: ['Prajwal', 'xyz']}}) here nin = not in
+=> show all objects except objects which contain name Prajwal and xyz.
+
+--db.mydata.find({age: { $exits: true}})
+=> Show all objects which contain age.
+
+--db.mydata.find({age: { $exits: false}})
+=> Show all objects which not contains age.
+
+--db.mydata.find({age: { $gte: 20, $lte: 40}})
+=> show all objects which age are greater than 20 and less than 40.
+
+--db.mydata.find({age: { $gte: 20, $lte: 40}, name:'Prajwal'})
+=> show all objects which age are greater than 20 and less than 40 & Name = Prajwal.
+
+--db.mydata.find({$or: [{age: {$lte: 20} }, {name: "Prajwal"}] })
+=>Show all objects which contains age less than 20 or name = Prajwal.
+
+--db.mydata.find({$and: [{age: {$lte: 20} }, {name: "Prajwal"}] })
+=>Show all objects which contains age less than 20 and name = Prajwal.
+
+--db.mydata.insertMany([{name:'tom', balance: 100, debt: 200}, { name:'john', balance:20 , debt:0 }])
+--db.mydata.find({$expr: { $gt: ["$debt", "$balance"]} })
+=> object which contains debt Greater than balance that is tom object will show.
+
+--db.mydata.find({ "address.street":"123 main st" })
+=>when we have to find object ka andar ka object value.
+
+--db.mydata.findOne({ age: 40})
+=> show first object which contain age = 40.
+
+--db.mydata.countDocuments({ age: 40})
+=> it give no. of object whose contains age=40 .it give no. not objects.
+
+--db.mydata.updateOne({_id: objectID("66611125355ed678c8") }, { $set : {age : 20}} )
+=> will update the age to 20 of object whose id is 66611125355ed678c8.
+
+--db.mydata.updateOne({_id: objectID("66611125355ed678c8") }, { $inc : {age : 3}} )
+=> will update the age to (age+3)//increment by 3 of object whose id is 66611125355ed678c8.
+
+--db.mydata.updateOne({_id: objectID("66611125355ed678c8") }, { $rename : {name : "abcd" }} )
+=> will rename my name to abcd of object whose id is 66611125355ed678c8.
+
+--db.mydata.updateOne({_id: objectID("66611125355ed678c8") }, { $unset : {name : "" }} )
+=> will remove my name property , from object whose id is 66611125355ed678c8.
+
+--db.mydata.updateOne({_id: objectID("66611125355ed678c8") }, { $push : {hobbies : "Reading" }} )
+=> will add my hobbies property of reading , to object whose id is 66611125355ed678c8.
+
+--db.mydata.updateOne({_id: objectID("66611125355ed678c8") }, { $pull : {hobbies : "Reading" }} )
+=> will remove my hobbies property of reading from hobbies Properties, to object whose id is 66611125355ed678c8.
+
+--db.mydata.updateMany({ address: { $exits: true} }, { $unset: { address: "" }})
+=>objects which contain address property from that objects address property will be removed.
+
+--db.mydata.deleteOne({ name: "John"})
+=>this will delete whole object with name John.
+
+--db.mydata.deleteMany({ age: {$exits: false}})
+=>this will delete whole objects which not contains age property.
